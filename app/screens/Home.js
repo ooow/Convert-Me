@@ -1,11 +1,12 @@
 import React from 'react';
-import { StatusBar, View } from 'react-native';
-import Container from '../components/container/container';
+import { StatusBar } from 'react-native';
+import Container from '../components/container/Container';
+import Logo from '../components/logo/Logo';
 
 const Home = () => (
   <Container>
     <StatusBar translucent={false} barStyle="light-content" />
-    <View />
+    <Logo />
   </Container>
 );
 
