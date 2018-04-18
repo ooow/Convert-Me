@@ -16,8 +16,8 @@ const ButtonWithInput = (props) => {
   return (
     <View style={style.container}>
       <TouchableHighlight
-        style={style.buttonContainer}
         onPress={props.onPress}
+        style={style.buttonContainer}
         underlayColor={underlayColor}
       >
         <Text style={style.buttonText}>{props.buttonText}</Text>
@@ -34,8 +34,8 @@ const ButtonWithInput = (props) => {
 
 ButtonWithInput.propTypes = {
   buttonText: PropTypes.string,
-  onPress: PropTypes.func,
   editable: PropTypes.bool,
+  onPress: PropTypes.func,
 };
 
 export default ButtonWithInput;
