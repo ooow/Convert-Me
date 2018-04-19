@@ -8,6 +8,7 @@ EStyleSheet.build({
   $lightGray: '#F0F0F0',
   $primaryBlue: '#4F6D7A',
   $white: '#FFF',
+// $outline: 1,
 });
 
 const App = () => (
