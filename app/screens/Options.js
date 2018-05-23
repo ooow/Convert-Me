@@ -25,7 +25,7 @@ class Options extends Component {
           translucent={false}
         />
         <ListItem
-          text="Thems"
+          text="Themes"
           onPress={this.handleThemePress}
           customIcon={
             <Ionicons
