@@ -15,7 +15,7 @@ class CurrencyList extends Component {
     return (
       <View style={{ flex: 1 }}>
         <StatusBar
-          barStyle="light-content"
+          barStyle="default"
           translucent={false}
         />
         <FlatList

@@ -1,6 +1,6 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import CurrencyList from './screens/CurrencyList';
+import Options from './screens/Options';
 
 EStyleSheet.build({
   $border: '#E2E2E2',
@@ -13,7 +13,7 @@ EStyleSheet.build({
 });
 
 const App = () => (
-  <CurrencyList />
+  <Options />
 );
 
 export default App;
