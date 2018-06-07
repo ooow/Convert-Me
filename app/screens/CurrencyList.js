@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { FlatList, StatusBar, View } from 'react-native';
 import currencies from '../date/currencies';
@@ -7,8 +8,13 @@ import Separator from '../components/list/Separator';
 const TEMP_CURRENT_CURRENCY = 'CAD';
 
 class CurrencyList extends Component {
+  static propTypes = {
+    navigation: PropTypes.object,
+  };
+
   handlePress = () => {
     console.log('Row press');
+    this.props.navigation.goBack(null);
   };
 
   render() {
@@ -24,6 +30,8 @@ class CurrencyList extends Component {
             <ListItem
               text={item}
               selected={item === TEMP_CURRENT_CURRENCY}
+              visible={item === TEMP_CURRENT_CURRENCY}
+              checkMark={item === TEMP_CURRENT_CURRENCY}
               onPress={this.handlePress}
             />)}
           keyExtractor={item => item}
