@@ -40,6 +40,7 @@ class Home extends Component {
 
   handleSettings = () => {
     console.log('Settings');
+    this.props.navigation.navigate('Options');
   };
 
   render() {
@@ -49,7 +50,7 @@ class Home extends Component {
           barStyle="light-content"
           translucent={false}
         />
-        <Header onPress={this.handleSettings()} />
+        <Header onPress={this.handleSettings} />
         <KeyboardAvoidingView behavior="padding">
           <Logo />
           <ButtonWithInput
