@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Platform, ScrollView, StatusBar } from 'react-native';
+import { Linking, Platform, ScrollView, StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ListItem from '../components/list/ListItem';
 import Separator from '../components/list/Separator';
@@ -21,6 +21,7 @@ class Options extends Component {
 
   handleSitePress = () => {
     console.log('Site press');
+    Linking.openURL('http://google.com').catch(() => alert('Some error'));
   };
 
   render() {
