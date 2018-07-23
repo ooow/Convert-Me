@@ -4,6 +4,7 @@ import { Linking, Platform, ScrollView, StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ListItem from '../components/list/ListItem';
 import Separator from '../components/list/Separator';
+import connectAlert from '../components/alert/connectAlert';
 
 const ICON_PREFIX = Platform.OS === 'ios' ? 'ios' : 'android';
 const ICON_COLOR = '#868686';
@@ -12,6 +13,7 @@ const ICON_SIZE = 23;
 class Options extends Component {
   static propTypes = {
     navigation: PropTypes.object,
+    alertWithType: PropTypes.func,
   };
 
   handleThemePress = () => {
@@ -21,7 +23,8 @@ class Options extends Component {
 
   handleSitePress = () => {
     console.log('Site press');
-    Linking.openURL('http://google.com').catch(() => alert('Some error'));
+    Linking.openURL('http://google.com').catch(() =>
+      this.props.alertWithType('error', 'Sorry', 'Can\'t be opened now'));
   };
 
   render() {
@@ -60,4 +63,4 @@ class Options extends Component {
   }
 }
 
-export default Options;
+export default connectAlert(Options);

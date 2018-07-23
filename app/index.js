@@ -2,6 +2,7 @@ import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Navigator from './config/router';
+import AlertProvider from './components/alert/AlertProvider';
 
 EStyleSheet.build({
   $border: '#E2E2E2',
@@ -17,7 +18,9 @@ EStyleSheet.build({
 });
 
 const App = () => (
-  <Navigator />
+  <AlertProvider>
+    <Navigator />
+  </AlertProvider>
 );
 
 export default App;
