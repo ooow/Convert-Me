@@ -1,8 +1,9 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
+import { Provider } from 'react-redux';
 import Navigator from './config/router';
 import AlertProvider from './components/alert/AlertProvider';
+import store from './config/store';
 
 EStyleSheet.build({
   $border: '#E2E2E2',
@@ -18,9 +19,11 @@ EStyleSheet.build({
 });
 
 const App = () => (
-  <AlertProvider>
-    <Navigator />
-  </AlertProvider>
+  <Provider store={store}>
+    <AlertProvider>
+      <Navigator onNavigationStateChange={null} />
+    </AlertProvider>
+  </Provider>
 );
 
 export default App;
