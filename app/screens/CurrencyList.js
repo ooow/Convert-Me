@@ -1,23 +1,45 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { FlatList, StatusBar, View } from 'react-native';
 import currencies from '../date/currencies';
 import ListItem from '../components/list/ListItem';
 import Separator from '../components/list/Separator';
-
-const TEMP_CURRENT_CURRENCY = 'CAD';
+import {
+  changeBaseCurrency,
+  changeQuoteCurrency,
+} from '../redux/actions/currencies';
 
 class CurrencyList extends Component {
   static propTypes = {
+    baseCurrency: PropTypes.string,
+    dispatch: PropTypes.func,
     navigation: PropTypes.object,
+    quoteCurrency: PropTypes.string,
   };
 
-  handlePress = () => {
-    console.log('Row press');
+  constructor(props) {
+    super(props);
+    this.type = props.navigation.state.params.type;
+  }
+
+  handlePress = (currency) => {
+    if (this.type === 'base') {
+      this.props.dispatch(changeBaseCurrency(currency));
+    } else if (this.type === 'quote') {
+      this.props.dispatch(changeQuoteCurrency(currency));
+    }
     this.props.navigation.goBack(null);
   };
 
   render() {
+    let currentCurrency = 'CAD';
+    if (this.type === 'base') {
+      currentCurrency = this.props.baseCurrency;
+    } else if (this.type === 'quote') {
+      currentCurrency = this.props.quoteCurrency;
+    }
+
     return (
       <View style={{ flex: 1 }}>
         <StatusBar
@@ -29,10 +51,10 @@ class CurrencyList extends Component {
           renderItem={({ item }) => (
             <ListItem
               text={item}
-              selected={item === TEMP_CURRENT_CURRENCY}
-              visible={item === TEMP_CURRENT_CURRENCY}
-              checkMark={item === TEMP_CURRENT_CURRENCY}
-              onPress={this.handlePress}
+              selected={item === currentCurrency}
+              visible={item === currentCurrency}
+              checkMark={item === currentCurrency}
+              onPress={() => this.handlePress(item)}
             />)}
           keyExtractor={item => item}
           ItemSeparatorComponent={Separator}
@@ -42,4 +64,15 @@ class CurrencyList extends Component {
   }
 }
 
-export default CurrencyList;
+const mapStateToProps = (state) => {
+  const baseCurrency = state.currencies.baseCurrency;
+  const quoteCurrency = state.currencies.quoteCurrency;
+
+  return {
+    baseCurrency,
+    quoteCurrency,
+  };
+};
+
+
+export default connect(mapStateToProps)(CurrencyList);
