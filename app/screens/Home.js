@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { KeyboardAvoidingView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
+import { KeyboardAvoidingView, StatusBar } from 'react-native';
 import ButtonWithInput from '../components/textinput/ButtonWithInput';
 import Container from '../components/container/Container';
 import Header from '../components/header/Header';
@@ -22,6 +22,7 @@ class Home extends Component {
     isFetching: PropTypes.bool,
     lastConversionDate: PropTypes.object,
     navigation: PropTypes.object,
+    primaryColor: PropTypes.string,
     quoteCurrency: PropTypes.string,
   };
 
@@ -59,26 +60,28 @@ class Home extends Component {
     }
 
     return (
-      <Container>
+      <Container backgroundColor={this.props.primaryColor}>
         <StatusBar
           barStyle="light-content"
           translucent={false}
         />
         <Header onPress={this.handleSettings} />
         <KeyboardAvoidingView behavior="padding">
-          <Logo />
+          <Logo tintColor={this.props.primaryColor} />
           <ButtonWithInput
             buttonText={this.props.baseCurrency}
             defaultValue={this.props.amount.toString()}
             keyboardType="numeric"
+            textColor={this.props.primaryColor}
             onChangeText={this.handleChangeAmount}
             onPress={this.handlePressBaseCurrency}
           />
           <ButtonWithInput
             buttonText={this.props.quoteCurrency}
             editable={false}
-            onPress={this.handlePressQuoteCurrency}
             value={quotePrice}
+            textColor={this.props.primaryColor}
+            onPress={this.handlePressQuoteCurrency}
           />
           <LastConverted
             base={this.props.baseCurrency}
@@ -111,6 +114,7 @@ const mapStateToProps = (state) => {
     isFetching,
     lastConversionDate: conversionSelector.date || new Date(),
     conversionRate: rates[quoteCurrency] || 0,
+    primaryColor: state.theme.primaryColor,
   };
 };
 

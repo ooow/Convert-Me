@@ -1,6 +1,11 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
-  Animated, ImageBackground, Keyboard, Platform, Text,
+  Animated,
+  ImageBackground,
+  Keyboard,
+  Platform,
+  Text,
   View,
 } from 'react-native';
 import style from './style';
@@ -8,6 +13,10 @@ import style from './style';
 const ANIMATION_DURATION = 250;
 
 class Logo extends Component {
+  static propType = {
+    tintColor: PropTypes.string,
+  };
+
   constructor(props) {
     super(props);
 
@@ -71,6 +80,7 @@ class Logo extends Component {
         width: this.imageWidth,
         height: this.imageWidth,
       },
+      this.props.tintColor ? { tintColor: this.props.tintColor } : null,
     ];
 
     return (
