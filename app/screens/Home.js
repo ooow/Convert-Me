@@ -10,6 +10,7 @@ import Logo from '../components/logo/Logo';
 import ReverseButton from '../components/reversebutton/ReverseButton';
 import {
   changeCurrencyAmount,
+  getInitialConversion,
   swapCurrency,
 } from '../redux/actions/currencies';
 
@@ -20,11 +21,16 @@ class Home extends Component {
     conversionRate: PropTypes.number,
     dispatch: PropTypes.func,
     isFetching: PropTypes.bool,
-    lastConversionDate: PropTypes.object,
+    lastConversionDate: PropTypes.string,
     navigation: PropTypes.object,
     primaryColor: PropTypes.string,
     quoteCurrency: PropTypes.string,
   };
+
+  constructor(props) {
+    super(props);
+    this.props.dispatch(getInitialConversion());
+  }
 
   handlePressBaseCurrency = () => {
     this.props.navigation.navigate('CurrencyList', {
@@ -112,7 +118,8 @@ const mapStateToProps = (state) => {
     quoteCurrency,
     amount,
     isFetching,
-    lastConversionDate: conversionSelector.date || new Date(),
+    lastConversionDate: conversionSelector.date ||
+    new Date().toISOString().substring(0, 10),
     conversionRate: rates[quoteCurrency] || 0,
     primaryColor: state.theme.primaryColor,
   };
