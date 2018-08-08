@@ -8,6 +8,7 @@ import Header from '../components/header/Header';
 import LastConverted from '../components/lastconverted/LastConverted';
 import Logo from '../components/logo/Logo';
 import ReverseButton from '../components/reversebutton/ReverseButton';
+import connectAlert from '../components/alert/connectAlert';
 import {
   changeCurrencyAmount,
   getInitialConversion,
@@ -16,9 +17,11 @@ import {
 
 class Home extends Component {
   static propTypes = {
+    alertWithType: PropTypes.func,
     amount: PropTypes.number,
     baseCurrency: PropTypes.string,
     conversionRate: PropTypes.number,
+    currencyError: PropTypes.string,
     dispatch: PropTypes.func,
     isFetching: PropTypes.bool,
     lastConversionDate: PropTypes.string,
@@ -30,6 +33,13 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.props.dispatch(getInitialConversion());
+  }
+
+  // TODO: rewrite to more effective option
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currencyError && !this.props.currencyError) {
+      this.props.alertWithType('error', 'Error', nextProps.currencyError);
+    }
   }
 
   handlePressBaseCurrency = () => {
@@ -122,7 +132,8 @@ const mapStateToProps = (state) => {
     new Date().toISOString().substring(0, 10),
     conversionRate: rates[quoteCurrency] || 0,
     primaryColor: state.theme.primaryColor,
+    currencyError: state.currencies.error,
   };
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(connectAlert(Home));
