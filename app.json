@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "privacy": "public",
     "icon": "./app/icon/app-icon.png",
-    "githubUrl": "https://github.com/ooow/CurrencyConverter",
+    "githubUrl": "https://github.com/ooow/Convert-Me",
     "sdkVersion": "26.0.0"
   }
 }
