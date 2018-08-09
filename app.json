@@ -1,5 +1,12 @@
 {
   "expo": {
+    "name": "Convert Me",
+    "slug": "convert-me",
+    "description": "Just for study and fun, enjoy",
+    "orientation": "portrait",
+    "privacy": "public",
+    "icon": "./app/icon/app-icon.png",
+    "githubUrl": "https://github.com/ooow/CurrencyConverter",
     "sdkVersion": "26.0.0"
   }
 }
