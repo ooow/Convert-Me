@@ -24,6 +24,7 @@ class Home extends Component {
     conversionRate: PropTypes.number,
     currencyError: PropTypes.string,
     dispatch: PropTypes.func,
+    isConnected: PropTypes.bool,
     isFetching: PropTypes.bool,
     lastConversionDate: PropTypes.string,
     navigation: PropTypes.object,
@@ -81,6 +82,15 @@ class Home extends Component {
     this.props.navigation.navigate('Options');
   };
 
+  handleDisconnectedPress = () => {
+    this.props.alertWithType(
+      'error',
+      'Not connected to the internet',
+      'Just a heads up that you are not connected to the internet - ' +
+      'some features may not work',
+    );
+  };
+
   render() {
     let quotePrice = (this.props.amount * this.props.conversionRate).toFixed(2);
 
@@ -94,7 +104,11 @@ class Home extends Component {
           barStyle="light-content"
           translucent={false}
         />
-        <Header onPress={this.handleSettings} />
+        <Header
+          onPress={this.handleSettings}
+          isConnected={this.props.isConnected}
+          onDisconnectedPress={this.handleDisconnectedPress}
+        />
         <KeyboardAvoidingView behavior="padding">
           <Logo tintColor={this.props.primaryColor} />
           <ButtonWithInput
@@ -146,6 +160,7 @@ const mapStateToProps = (state) => {
     conversionRate: rates[quoteCurrency] || 0,
     primaryColor: state.theme.primaryColor,
     currencyError: state.currencies.error,
+    isConnected: state.network.connected,
   };
 };
 
