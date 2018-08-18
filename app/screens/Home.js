@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { KeyboardAvoidingView, StatusBar } from 'react-native';
+import { KeyboardAvoidingView, NetInfo, StatusBar } from 'react-native';
 import ButtonWithInput from '../components/textinput/ButtonWithInput';
 import Container from '../components/container/Container';
 import Header from '../components/header/Header';
@@ -35,12 +35,24 @@ class Home extends Component {
     this.props.dispatch(getInitialConversion());
   }
 
+  componentDidMount() {
+    NetInfo.addEventListener('connectionChange', this.handleNetworkChange);
+  }
+
   // TODO: rewrite to more effective option
   componentWillReceiveProps(nextProps) {
     if (nextProps.currencyError && !this.props.currencyError) {
       this.props.alertWithType('error', 'Error', nextProps.currencyError);
     }
   }
+
+  componentWillUnmount() {
+    NetInfo.removeEventListener('connectionChange', this.handleNetworkChange);
+  }
+
+  handleNetworkChange = (info) => {
+    console.log('network info: ', info);
+  };
 
   handlePressBaseCurrency = () => {
     this.props.navigation.navigate('CurrencyList', {

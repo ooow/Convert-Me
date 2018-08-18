@@ -17,12 +17,10 @@ class Options extends Component {
   };
 
   handleThemePress = () => {
-    console.log('Theme press');
     this.props.navigation.navigate('Themes');
   };
 
   handleSitePress = () => {
-    console.log('Site press');
     Linking.openURL('http://google.com').catch(() =>
       this.props.alertWithType('error', 'Sorry', 'Can\'t be opened now'));
   };
