@@ -14,6 +14,7 @@ EStyleSheet.build({
   $primaryGreen: '#00BD9D',
   $primaryOrange: '#D57A66',
   $primaryPurple: '#9E769F',
+  $darkGray: '#212121',
   $white: '#FFF',
 // $outline: 1,
 });

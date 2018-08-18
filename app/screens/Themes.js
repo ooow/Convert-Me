@@ -12,6 +12,7 @@ const style = EStyleSheet.create({
   $orange: '$primaryOrange',
   $green: '$primaryGreen',
   $purple: '$primaryPurple',
+  $gray: '$darkGray',
 });
 
 class Themes extends Component {
@@ -59,6 +60,14 @@ class Themes extends Component {
           text="Purple"
           onPress={() => this.handleThemePress(style.$purple)}
           iconBackground={style.$purple}
+          checkMark={false}
+          selected
+        />
+        <Separator />
+        <ListItem
+          text="Dark Gray"
+          onPress={() => this.handleThemePress(style.$gray)}
+          iconBackground={style.$gray}
           checkMark={false}
           selected
         />
