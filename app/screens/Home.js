@@ -14,6 +14,7 @@ import {
   getInitialConversion,
   swapCurrency,
 } from '../redux/actions/currencies';
+import { changeNetworkStatus } from '../redux/actions/network';
 
 class Home extends Component {
   static propTypes = {
@@ -51,7 +52,7 @@ class Home extends Component {
   }
 
   handleNetworkChange = (info) => {
-    console.log('network info: ', info);
+    this.props.dispatch(changeNetworkStatus(info.type));
   };
 
   handlePressBaseCurrency = () => {
