@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/es/integration/react';
 import Navigator from './config/router';
 import AlertProvider from './components/alert/AlertProvider';
-import store from './config/store';
+import configureStore from './config/store';
 
 EStyleSheet.build({
   $border: '#E2E2E2',
@@ -19,12 +20,28 @@ EStyleSheet.build({
 // $outline: 1,
 });
 
-const App = () => (
-  <Provider store={store}>
-    <AlertProvider>
-      <Navigator onNavigationStateChange={null} />
-    </AlertProvider>
-  </Provider>
-);
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    const { store, persistor } = configureStore();
+    this.state = {
+      store,
+      persistor,
+    };
+  }
+
+  render() {
+    return (
+      <Provider store={this.state.store}>
+        <PersistGate persistor={this.state.persistor}>
+          <AlertProvider>
+            <Navigator onNavigationStateChange={null} />
+          </AlertProvider>
+        </PersistGate>
+      </Provider>
+    );
+  }
+}
 
 export default App;
