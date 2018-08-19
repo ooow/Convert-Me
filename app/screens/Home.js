@@ -43,8 +43,7 @@ class Home extends Component {
 
   componentDidUpdate() {
     if (this.props.currencyError) {
-      this.props.alertWithType('error', 'Error', 'Not connected to the ' +
-        'internet. Conversion rate may be outdated or unavailable');
+      this.props.alertWithType('error', 'Error', this.props.currencyError);
     }
   }
 

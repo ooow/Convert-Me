@@ -9,8 +9,17 @@ import {
 } from '../redux/actions/currencies';
 
 
+const requestTimeout = (time, promise) =>
+  new Promise((resolve, reject) => {
+    setTimeout(
+      () => reject(new Error('Request has timed out - you have a slow internet connection')),
+      time,
+    );
+    promise.then(resolve, reject);
+  });
+
 const getLatestRate = currency =>
-  fetch(`https://frankfurter.app//current?from=${currency}`);
+  requestTimeout(2000, fetch(`https://frankfurter.app//current?from=${currency}`));
 
 function* initializeState(action) {
   const { connected, hasCheckedStatus } = yield select(state => state.network);
@@ -40,7 +49,11 @@ function* initializeState(action) {
       yield put({ type: CONVERSION_RESULT, result });
     }
   } catch (e) {
-    yield put({ type: CONVERSION_ERROR, error: e.message });
+    yield put({
+      type: CONVERSION_ERROR,
+      error: 'Not connected to the internet. Conversion rate may be ' +
+      'outdated or unavailable',
+    });
   }
 }
 
