@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { KeyboardAvoidingView, StatusBar } from 'react-native';
+import { KeyboardAvoidingView, NetInfo, StatusBar } from 'react-native';
 import ButtonWithInput from '../components/textinput/ButtonWithInput';
 import Container from '../components/container/Container';
 import Header from '../components/header/Header';
@@ -14,6 +14,7 @@ import {
   getInitialConversion,
   swapCurrency,
 } from '../redux/actions/currencies';
+import { changeNetworkStatus } from '../redux/actions/network';
 
 class Home extends Component {
   static propTypes = {
@@ -23,6 +24,7 @@ class Home extends Component {
     conversionRate: PropTypes.number,
     currencyError: PropTypes.string,
     dispatch: PropTypes.func,
+    isConnected: PropTypes.bool,
     isFetching: PropTypes.bool,
     lastConversionDate: PropTypes.string,
     navigation: PropTypes.object,
@@ -35,12 +37,23 @@ class Home extends Component {
     this.props.dispatch(getInitialConversion());
   }
 
-  // TODO: rewrite to more effective option
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currencyError && !this.props.currencyError) {
-      this.props.alertWithType('error', 'Error', nextProps.currencyError);
+  componentDidMount() {
+    NetInfo.addEventListener('connectionChange', this.handleNetworkChange);
+  }
+
+  componentDidUpdate() {
+    if (this.props.currencyError) {
+      this.props.alertWithType('error', 'Error', this.props.currencyError);
     }
   }
+
+  componentWillUnmount() {
+    NetInfo.removeEventListener('connectionChange', this.handleNetworkChange);
+  }
+
+  handleNetworkChange = (info) => {
+    this.props.dispatch(changeNetworkStatus(info.type));
+  };
 
   handlePressBaseCurrency = () => {
     this.props.navigation.navigate('CurrencyList', {
@@ -68,6 +81,15 @@ class Home extends Component {
     this.props.navigation.navigate('Options');
   };
 
+  handleDisconnectedPress = () => {
+    this.props.alertWithType(
+      'error',
+      'Not connected to the internet',
+      'Just a heads up that you are not connected to the internet - ' +
+      'some features may not work',
+    );
+  };
+
   render() {
     let quotePrice = (this.props.amount * this.props.conversionRate).toFixed(2);
 
@@ -81,7 +103,11 @@ class Home extends Component {
           barStyle="light-content"
           translucent={false}
         />
-        <Header onPress={this.handleSettings} />
+        <Header
+          onPress={this.handleSettings}
+          isConnected={this.props.isConnected}
+          onDisconnectedPress={this.handleDisconnectedPress}
+        />
         <KeyboardAvoidingView behavior="padding">
           <Logo tintColor={this.props.primaryColor} />
           <ButtonWithInput
@@ -133,6 +159,7 @@ const mapStateToProps = (state) => {
     conversionRate: rates[quoteCurrency] || 0,
     primaryColor: state.theme.primaryColor,
     currencyError: state.currencies.error,
+    isConnected: state.network.connected,
   };
 };
 

@@ -3,11 +3,23 @@ import { Image, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 import style from './style';
 
-const Header = ({ onPress }) => (
+const Header = ({ onPress, isConnected, onDisconnectedPress }) => (
   <View style={style.container}>
+    {!isConnected ? (
+      <TouchableOpacity
+        onPress={onDisconnectedPress}
+        style={style.button}
+      >
+        <Image
+          resizeMode="contain"
+          source={require('./img/disconnected.png')}
+          style={style.icon}
+        />
+      </TouchableOpacity>
+    ) : null}
     <TouchableOpacity
       onPress={onPress}
-      style={style.button}
+      style={[style.button, style.buttonRight]}
     >
       <Image
         resizeMode="contain"
@@ -19,6 +31,8 @@ const Header = ({ onPress }) => (
 );
 
 Header.propTypes = {
+  isConnected: PropTypes.bool,
+  onDisconnectedPress: PropTypes.func,
   onPress: PropTypes.func,
 };
 
