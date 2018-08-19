@@ -41,10 +41,10 @@ class Home extends Component {
     NetInfo.addEventListener('connectionChange', this.handleNetworkChange);
   }
 
-  // TODO: rewrite to more effective option
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currencyError && !this.props.currencyError) {
-      this.props.alertWithType('error', 'Error', nextProps.currencyError);
+  componentDidUpdate() {
+    if (this.props.currencyError) {
+      this.props.alertWithType('error', 'Error', 'Not connected to the ' +
+        'internet. Conversion rate may be outdated or unavailable');
     }
   }
 
