@@ -10,7 +10,8 @@
     "lint": "eslint app/",
     "lint:fix": "eslint app/ --fix",
     "start": "react-native-scripts start",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
@@ -32,15 +33,24 @@
     "redux-saga": "^0.16.0"
   },
   "devDependencies": {
+    "enzyme": "^3.4.4",
+    "enzyme-adapter-react-16": "^1.2.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
+    "jest": "^23.5.0",
     "jest-expo": "26.0.0",
+    "jest-fetch-mock": "^1.6.5",
+    "react-dom": "^16.4.2",
     "react-native-scripts": "1.13.1",
-    "react-test-renderer": "16.3.0-alpha.1"
+    "react-test-renderer": "^16.3.0-alpha.1",
+    "redux-mock-store": "^1.5.3"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "react-native",
+    "setupFiles": [
+      "./tests/setup.js"
+    ]
   }
 }
