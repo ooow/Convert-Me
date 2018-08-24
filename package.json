@@ -2,15 +2,6 @@
   "name": "CurrencyConverter",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.10.0",
-    "jest-expo": "26.0.0",
-    "react-native-scripts": "1.13.1",
-    "react-test-renderer": "16.3.0-alpha.1"
-  },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "android": "react-native-scripts android",
@@ -20,9 +11,6 @@
     "lint:fix": "eslint app/ --fix",
     "start": "react-native-scripts start",
     "test": "jest"
-  },
-  "jest": {
-    "preset": "jest-expo"
   },
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
@@ -42,5 +30,17 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.10.0",
     "redux-saga": "^0.16.0"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "jest-expo": "26.0.0",
+    "react-native-scripts": "1.13.1",
+    "react-test-renderer": "16.3.0-alpha.1"
+  },
+  "jest": {
+    "preset": "jest-expo"
   }
 }
