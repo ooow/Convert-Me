@@ -28,3 +28,4 @@ package-lock.json
 
 # testing
 coverage/
+/app/**/__tests__/**/__snapshots__

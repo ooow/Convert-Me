@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { View } from 'react-native';
 
 import Container from '../../container/Container';
 import style from '../../container/style';
@@ -13,3 +14,17 @@ it('renders successfully without children', () => {
   expect(underTest).toBeTruthy();
 });
 
+it('renders children props', () => {
+  const rendered = renderer
+    .create(<Container>
+      <View />
+    </Container>)
+    .toJSON();
+  expect(rendered).toMatchSnapshot();
+});
+
+it('uses the specified backgroundColor if provided', () => {
+  const rendered = renderer.create(
+    <Container backgroundColor="red" />).toJSON();
+  expect(rendered).toMatchSnapshot();
+});
