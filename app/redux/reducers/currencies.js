@@ -8,7 +8,7 @@ import {
   SWAP_CURRENCY,
 } from '../actions/currencies';
 
-const initialState = {
+export const initialState = {
   amount: 100,
   baseCurrency: 'USD',
   conversions: {},
