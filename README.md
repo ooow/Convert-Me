@@ -1,11 +1,8 @@
 # Convert Me #
 ### Just for study and fun, enjoy :) ###
 
-#### iPhone X example: ####
-![app iphone x](/app-iphone-x-example.gif)
-
-#### iPhone SE example: ####
-![app](/app-example.gif)
+#### Demo: ####
+![app](/demo.gif)
 
 
 * [Profile on Expo](https://expo.io/@oooow)
