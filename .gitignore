@@ -20,3 +20,12 @@ yarn-error.log*
 package-lock.json
 .watchmanconfig
 
+# ios
+/ios
+
+# android
+/android
+
+# testing
+coverage/
+/app/**/__tests__/**/__snapshots__

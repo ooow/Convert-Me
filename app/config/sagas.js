@@ -21,7 +21,7 @@ const requestTimeout = (time, promise) =>
 const getLatestRate = currency =>
   requestTimeout(2000, fetch(`https://frankfurter.app//current?from=${currency}`));
 
-function* initializeState(action) {
+export function* initializeState(action) {
   const { connected, hasCheckedStatus } = yield select(state => state.network);
 
   if (!connected && hasCheckedStatus) {

@@ -8,11 +8,12 @@ import {
   SWAP_CURRENCY,
 } from '../actions/currencies';
 
-const initialState = {
-  baseCurrency: 'USD',
-  quoteCurrency: 'GBP',
+export const initialState = {
   amount: 100,
+  baseCurrency: 'USD',
   conversions: {},
+  error: null,
+  quoteCurrency: 'GBP',
 };
 
 const setConversions = (state, action) => {

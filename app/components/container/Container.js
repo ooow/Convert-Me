@@ -1,20 +1,14 @@
 import React from 'react';
-import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
 import style from './style';
 
 const Container = ({ children, backgroundColor }) => {
-  const containerStyle = [style.container];
+  const containerStyles = [style.container];
   if (backgroundColor) {
-    containerStyle.push({ backgroundColor });
+    containerStyles.push({ backgroundColor });
   }
-  return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={containerStyle}>
-        {children}
-      </View>
-    </TouchableWithoutFeedback>
-  );
+  return <SafeAreaView style={containerStyles}>{children}</SafeAreaView>;
 };
 
 Container.propTypes = {
