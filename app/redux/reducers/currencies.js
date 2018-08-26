@@ -9,10 +9,11 @@ import {
 } from '../actions/currencies';
 
 const initialState = {
-  baseCurrency: 'USD',
-  quoteCurrency: 'GBP',
   amount: 100,
+  baseCurrency: 'USD',
   conversions: {},
+  error: null,
+  quoteCurrency: 'GBP',
 };
 
 const setConversions = (state, action) => {
