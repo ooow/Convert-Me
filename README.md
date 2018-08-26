@@ -1,4 +1,4 @@
-# Convert Me #
+# Convert Me [![Build Status](https://travis-ci.org/ooow/Convert-Me.svg?branch=master)](https://travis-ci.org/ooow/Convert-Me) #
 ### Just for study and fun, enjoy :) ###
 
 #### Demo: ####
