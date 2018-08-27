@@ -15,7 +15,9 @@
     "test": "jest",
     "test:coverage": "jest --coverage && open coverage/lcov-report/index.html",
     "test:watch": "jest --watch",
-    "travis-ci-test": "jest --updateSnapshot"
+    "travis-ci-test": "jest --updateSnapshot",
+    "upgrade": "react-native upgrade",
+    "xcode:open": "open ios/CurrencyConverter.xcodeproj/"
   },
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
@@ -29,6 +31,7 @@
     "react-native": "^0.54.0",
     "react-native-dropdownalert": "3.4.0",
     "react-native-extended-stylesheet": "^0.8.1",
+    "react-native-splash-screen": "^3.1.1",
     "react-navigation": "2.2.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
