@@ -14,8 +14,8 @@ const ListItem = props => (
       {
         props.selected ?
           <Icon
-            checkMark={props.checkMark}
-            visible={props.visible}
+            visible
+            iconName={props.checkMark ? 'checkmark' : null}
             iconBackground={props.iconBackground}
           />
           :
@@ -33,7 +33,6 @@ ListItem.propTypes = {
   onPress: PropTypes.func,
   selected: PropTypes.bool,
   text: PropTypes.string,
-  visible: PropTypes.bool,
 };
 
 export default ListItem;
