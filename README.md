@@ -1,8 +1,11 @@
 # Convert Me [![Build Status](https://travis-ci.org/ooow/Convert-Me.svg?branch=master)](https://travis-ci.org/ooow/Convert-Me) #
 ### Just for study and fun, enjoy :) ###
 
-#### Demo: ####
+#### Demo IOS: ####
 ![app](/demo.gif)
+
+#### Demo Android: ####
+![app](/demo-android.gif)
 
 
 * [Profile on Expo](https://expo.io/@oooow)
