@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Linking, Platform, ScrollView, StatusBar } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Linking, ScrollView, StatusBar } from 'react-native';
 import ListItem from '../components/list/ListItem';
 import Separator from '../components/list/Separator';
+import Icon from '../components/list/Icon';
 import connectAlert from '../components/alert/connectAlert';
 
-const ICON_PREFIX = Platform.OS === 'ios' ? 'ios' : 'android';
 const ICON_COLOR = '#868686';
 const ICON_SIZE = 23;
 
@@ -36,10 +35,12 @@ class Options extends Component {
           text="Themes"
           onPress={this.handleThemePress}
           customIcon={
-            <Ionicons
-              name={`${ICON_PREFIX}-arrow-forward`}
-              color={ICON_COLOR}
-              size={ICON_SIZE}
+            <Icon
+              visible
+              iconName="arrow-forward"
+              iconSize={ICON_SIZE}
+              iconColor={ICON_COLOR}
+              iconBackground="transparent"
             />
           }
         />
@@ -48,10 +49,12 @@ class Options extends Component {
           text="Goga.io"
           onPress={this.handleSitePress}
           customIcon={
-            <Ionicons
-              name={`${ICON_PREFIX}-link`}
-              color={ICON_COLOR}
-              size={ICON_SIZE}
+            <Icon
+              visible
+              iconName="link"
+              iconSize={ICON_SIZE}
+              iconColor={ICON_COLOR}
+              iconBackground="transparent"
             />
           }
         />

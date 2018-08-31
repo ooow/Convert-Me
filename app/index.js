@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import Navigator from './config/router';
@@ -29,6 +30,10 @@ class App extends Component {
       store,
       persistor,
     };
+  }
+
+  componentDidMount() {
+    SplashScreen.hide();
   }
 
   render() {

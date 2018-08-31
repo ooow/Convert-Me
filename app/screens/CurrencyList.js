@@ -53,7 +53,6 @@ class CurrencyList extends Component {
             <ListItem
               text={item}
               selected={item === currentCurrency}
-              visible={item === currentCurrency}
               checkMark={item === currentCurrency}
               iconBackground={this.props.primaryColor}
               onPress={() => this.handlePress(item)}
